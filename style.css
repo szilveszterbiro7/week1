@@ -207,3 +207,32 @@ footer{
     align-items: center;
     margin-top: 0.5rem;
 }
+.breathing {
+    background-color: rgba(42, 58, 44, 0.6);
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.breathing-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    margin: 0.5rem;
+}
+#breathing-circle {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: rgba(212,163,115,0.2);
+    border: 2px solid #d4a373;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 4s ease-in-out, background 4s ease-in-out;
+}
+#breathing-text {
+    font-size: medium;
+    font-weight: bold;
+    color: #ffff;
+}

@@ -208,4 +208,37 @@ clearBtn.addEventListener('click', ()=>{
         journalStat.textContent='Cleared!';
     }
 });
-
+const breathingCircle=document.getElementById('breathing-circle');
+const breathingText=document.getElementById('breathing-text');
+const breathingBtn=document.getElementById('toggle-breathing');
+let breathingActive=false;
+let breathingInterval=null;
+breathingBtn.addEventListener('click', ()=>{
+    breathingActive=!breathingActive;
+    if(breathingActive) {
+        breathingBtn.textContent='Stop Breathing';
+        runCycle();
+        breathingInterval=setInterval(runCycle, 10000);
+    }
+    else {
+        breathingBtn.textContent='Start Breathing';
+        clearInterval(breathingInterval);
+        breathingCircle.style.transform='scale(1)';
+        breathingText.textContent='Ready';
+    }
+});
+function runCycle () {
+    breathingText.textContent='Inhale...';
+    breathingCircle.style.transform='scale(1.4)';
+    breathingCircle.style.background='rgba(212,163,115,0.4)';
+    setTimeout(()=> {
+        if(!breathingActive) return;
+        breathingText.textContent='Hold';
+    }, 4000);
+    setTimeout(()=> {
+        if(!breathingActive) return;
+        breathingText.textContent='Exhale...';
+        breathingCircle.style.transform='scale(1)';
+        breathingCircle.style.background='rgba(212, 115, 0.2)';
+    }, 6000);
+}
