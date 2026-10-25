@@ -39,3 +39,26 @@ soundcards.forEach(card=> {
         slider.dispatchEvent(new Event('input'));
     });
 });
+mastervolume.addEventListener('input', ()=>{
+    soundcards.forEach(card =>{
+        const audio=card.querySelector('audio');
+        const slider=card.querySelector('.volume-slider');
+        const mastervol=mastervolume.value/100;
+        audio.volume=(slider.value/100)*mastervol;
+    });
+});
+mastertoggle.addEventListener('click', () =>{
+    mastermuted=!mastermuted;
+    soundcards.forEach(card=>{
+        const audio=card.querySelector('audio');
+        audio.muted=mastermuted;
+    });
+    if (mastermuted) {
+        mastertoggle.innerHTML='<span>🔇</span> Unmute All';
+        mastertoggle.classList.add('active');
+    }
+    else {
+        mastertoggle.innerHTML='<span>🔊</span> Mute All';
+        mastertoggle.classList.remove('active');
+    }
+});
