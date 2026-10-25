@@ -177,3 +177,33 @@ footer{
     font-size: smaller;
     color:#7deb85;
 }
+.journal {
+    background-color: rgba(42, 58, 44, 0.6);
+    border-radius: 12px;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+.journal h3 {
+    font-size: medium;
+    margin-bottom: 0.75rem;
+    color: #d4a373;
+}
+#journal-input {
+    width: 100%;
+    height: 100px;
+    background-color: #253327;
+    border:1px solid rgba(255, 255, 255, 0.1);
+    border-radius:5px;
+    color:#ffff;
+    font-family: inherit;
+    resize: vertical;
+}
+#journal-input:focus {
+    border-color:#e9ccaf;
+}
+.journal-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}

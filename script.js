@@ -190,4 +190,22 @@ function particlesAnim () {
     requestAnimationFrame(particlesAnim);
 }
 particlesAnim();
+const journalInp=document.getElementById('journal-input');
+const clearBtn=document.getElementById('clear-journal');
+const journalStat=document.getElementById('journal-status');
+if (localStorage.getItem('journal', journalInp.value)){
+    journalInp.value=localStorage.getItem('journal');
+}
+journalInp.addEventListener('input', ()=> {
+    localStorage.setItem('journal',journalInp.value);
+    journalStat.textContent='Saved!';
+    setTimeout(()=>{journalStat.textContent='Autosaved';},1500);
+});
+clearBtn.addEventListener('click', ()=>{
+    if (confirm("Are you sure you want to clear your joutnal?")) {
+        journalInp.value=' ';
+        localStorage.removeItem('journal');
+        journalStat.textContent='Cleared!';
+    }
+});
 
