@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Audio player</title>
+</head>
+<body>
+    <!-- Master Controls Bar-->
+     <section id="master-controls">
+    <button id="master-toggle">
+        <span>🔊</span> Pause All
+    </button>
+<div class="player-container">
+    <!-- Header Section-->
+    <header class="header">
+    <!-- Mountain Vector Icon-->
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 3l4 8 5-5 5 15H2L8 3z"/>
+    </svg>
+<div class="master-volume">
+    <label for="master-vol">Master Volume</label>
+    <input type="range" id="master-vol" min="0" max="100" value="80">
+</div>
+    <h1>My Audio Player</h1>
+    <p>Craft your custom outdoor ambient sanctuary</p>
+    <!-- Preset buttons-->
+    <div class="presets">
+        <button class="preset-btn"> Deep Forest</button>
+        <button class="preset-btn"> Cozy Campfire</button>
+        <button class="preset-btn"> Mountain Storm</button>
+    </div>
+    <!-- Sound Grid Section -->
+     <main class="sound-grid">
+
+    <!-- Card1: Campfire-->
+     <article class="sound-card" data-sound="campfire">
+        <div class="card-header">
+            <span class="sound icon">🔥</span>
+            <h3>Crackling Campfire</h3>
+            </div>
+            <div class="slider-group">
+                <label for="vol-campfire">Volume</label>
+                <input type="range" id="vol-campfire" class="volume-slider" min="0" max="100" value="0">
+            </div>
+            <button class="toggle-btn">Play</button>
+            <audio id="audio-campfire" src="assets/campfire.mp3" loop></audio>
+     </article>
+     <!-- Card2: Gentle rain-->
+<article class="sound-card" data-sound="rain">
+        <div class="card-header">
+            <span class="sound icon">🌧️</span>
+            <h3>Gentle Rain</h3>
+            </div>
+            <div class="slider-group">
+                <label for="vol-rain">Volume</label>
+                <input type="range" id="vol-rain" class="volume-slider" min="0" max="100" value="0">
+            </div>
+            <button class="toggle-btn">Play</button>
+            <audio id="audio-rain" src="assets/rain.mp3" loop></audio>
+     </article>
+     <!-- Card3: Forest bird-->
+     <article class="sound-card" data-sound="birds">
+        <div class="card-header">
+            <span class="sound icon">🐦</span>
+            <h3>Forest Birds</h3>
+            </div>
+            <div class="slider-group">
+                <label for="vol-birds">Volume</label>
+                <input type="range" id="vol-birds" class="volume-slider" min="0" max="100" value="0">
+            </div>
+            <button class="toggle-btn">Play</button>
+            <audio id="audio-birds" src="assets/birds.mp3" loop></audio>
+     </article>
+<!-- Card4: River stream -->
+     <article class="sound-card" data-sound="river">
+        <div class="card-header">
+            <span class="sound icon">🌊</span>
+            <h3>River Stream</h3>
+            </div>
+            <div class="slider-group">
+                <label for="vol-river">Volume</label>
+                <input type="range" id="vol-river" class="volume-slider" min="0" max="100" value="0">
+            </div>
+            <button class="toggle-btn">Play</button>
+            <audio id="audio-river" src="assets/river.mp3" loop></audio>
+     </article>
+     <!-- Card5: Soft wind -->
+     <article class="sound-card" data-sound="wind">
+        <div class="card-header">
+            <span class="sound icon">🍃</span>
+            <h3>Soft Wind</h3>
+            </div>
+            <div class="slider-group">
+                <label for="vol-wind">Volume</label>
+                <input type="range" id="vol-wind" class="volume-slider" min="0" max="100" value="0">
+            </div>
+            <button class="toggle-btn">Play</button>
+            <audio id="audio-wind" src="assets/wind.mp3" loop></audio>
+     </article>  
+     <!-- Slepp timer section-->
+      <section class="timer-section">
+        <h3>⏱️ Sleep Timer</h3>
+        <div class="timer-buttons">
+            <button data-time="15">15 min</button>
+            <button data-time="30">30 min</button>
+            <button data-time="60">60 min</button>
+        </div>
+        <p id="timer-display">Timer inactive</p>
+      </section>
+       <footer class="footer">
+        <p>Made for Terra.</p>
+       </footer>
+     </main>
+</section>
+</header>
+</div>
+</body>
+</html>
