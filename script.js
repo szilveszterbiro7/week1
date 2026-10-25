@@ -66,14 +66,22 @@ function updateDynamicBackground() {
     const rainvol = Number(document.querySelector('[data-sound="rain"] .volume-slider').value);
     const campvol = Number(document.querySelector('[data-sound="campfire"] .volume-slider').value);
     const windvol = Number(document.querySelector('[data-sound="wind"] .volume-slider').value);
-    if (rainvol>campvol && rainvol>windvol){
+    const rivvol = Number(document.querySelector('[data-sound="river"] .volume-slider').value);
+    const birdvol = Number(document.querySelector('[data-sound="birds"] .volume-slider').value);
+    if (rainvol>campvol && rainvol>windvol && rainvol>rivvol && rainvol>birdvol){
         document.body.style.backgroundColor='#2d3d52';
     }
-    else if (campvol>rainvol && campvol>windvol){
+    else if (campvol>rainvol && campvol>windvol && campvol>rivvol && campvol>birdvol){
         document.body.style.backgroundColor='#ac4722';
     }
-    else if (windvol>campvol && windvol>rainvol){
+    else if (windvol>campvol && windvol>rainvol && windvol>rivvol && windvol>birdvol){
         document.body.style.backgroundColor='#99dee3';
+    }
+        else if (rivvol>campvol && rivvol>rainvol && rivvol>windvol && rivvol>birdvol){
+        document.body.style.backgroundColor='#4284ed';
+    }
+    else if (birdvol>campvol && birdvol>rainvol && birdvol>windvol && birdvol>rivvol){
+        document.body.style.backgroundColor='#effd52';
     }
     else{
         document.body.style.backgroundColor='#2c3e2e';
@@ -90,7 +98,7 @@ presets.forEach(btn=>{
         const text=btn.textContent;
         if (text.includes('Forest')) {
             slidervalue('birds', 60);
-            slidervalue('river', 40);
+            slidervalue('river', 85);
             slidervalue('wind', 30);
         }
         else if (text.includes('Cozy Campfire')) {
