@@ -13,6 +13,19 @@ body {
     align-items: center;
     padding: 2rem 1rem;
 }
+#firefly {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+.player-container {
+    position: relative;
+    z-index: 1;
+}
 .player-container {
     background-color: rgba(30, 40, 32, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);

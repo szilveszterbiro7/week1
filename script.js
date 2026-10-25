@@ -148,3 +148,46 @@ timers.forEach(btn=>{
         }, 1000);
     });
 });
+const canvas=document.getElementById('firefly');
+const ctx=canvas.getContext('2d');
+function resizeCanvas() {
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas ();
+const particles=[];
+for (let i=0; i<25; i++) {
+    particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        radius:Math.random()*2.5+1,
+        color: 'rgba(212, 163, 115, 0.6)',
+        speedX: (Math.random()-0.5)*0.4,
+        speedY: (Math.random()-0.5)*0.4
+    });
+}
+function particlesAnim () {
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    particles.forEach(p=> {
+        p.x+=p.speedX;
+        p.y+=p.speedY;
+        if(p.x<0) 
+            p.x=canvas.width;
+        if(p.x>canvas.width) 
+            p.x=0;
+        if(p.y<0) 
+            p.y=canvas.height;
+        if(p.y>canvas.height) 
+            p.x=0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+        ctx.fillStyle=p.color;
+        ctx.shadowBlur=10;
+        ctx.shadowColor='#d4a373';
+        ctx.fill();
+    });
+    requestAnimationFrame(particlesAnim);
+}
+particlesAnim();
+
