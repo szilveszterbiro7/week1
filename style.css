@@ -90,7 +90,6 @@ body {
     gap: 15px;
 }
 .sound-card:hover {
-    transform: translateY(4px);
     background: #3d573f;
 }
 .card-header {
@@ -98,11 +97,9 @@ body {
     align-items: center;
     gap: 6px;
 }
-.sound-icon {
-    font-size: 20px;
-}
 .sound-card h3 {
-    font-size: 15px;
+    font-size:medium;
+    font-weight: lighter;
 }
 .slider-group {
     display: flex;
@@ -162,8 +159,4 @@ body {
 #timer-display {
     font-size: small;
     color: #a3b899;
-}
-.footer {
-    font-size: smaller;
-    color: #8b9d82;
 }
