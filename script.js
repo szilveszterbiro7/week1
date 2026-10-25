@@ -1,15 +1,15 @@
 const soundcards=document.querySelectorAll ('.sound-card');
-const mastervolume=document.getElementById ('master-volume');
+const mastervolume=document.getElementById ('master-vol');
 const mastertoggle=document.getElementById ('master-toggle');
-const presets=document.querySelectorAll ('preset-btn');
-const timers=document.querySelectorAll ('timer-buttons button');
+const presets=document.querySelectorAll ('.preset-btn');
+const timers=document.querySelectorAll ('.timer-buttons button');
 const timerdisplay=document.getElementById ('timer-display');
 let mastermuted=false;
 let activetimer=null;
 soundcards.forEach(card=> {
     const audio=card.querySelector('audio');
-    const slider=card.querySelector('volume-slider');
-    const togglebutton=card.querySelector('toggle-btn');
+    const slider=card.querySelector('.volume-slider');
+    const togglebutton=card.querySelector('.toggle-btn');
     const soundname=card.dataset.sound;
     slider.addEventListener('input', () =>{
         const volume=slider.value/100;
@@ -63,16 +63,16 @@ mastertoggle.addEventListener('click', () =>{
     }
 });
 function updateDynamicBackground() {
-    let rainvol=document.getElementById('vol-rain').value;
-    let campfirevol=document.getElementById('vol-campfire').value
-    let windvol=document.getElementById('vol-wind').value;
-    if (rainvol>50){
+    const rainvol = Number(document.querySelector('[data-sound="rain"] .volume-slider').value);
+    const campvol = Number(document.querySelector('[data-sound="campfire"] .volume-slider').value);
+    const windvol = Number(document.querySelector('[data-sound="wind"] .volume-slider').value);
+    if (rainvol>campvol && rainvol>windvol){
         document.body.style.backgroundColor='#2d3d52';
     }
-    else if (campfirevol>50){
+    else if (campvol>rainvol && campvol>windvol){
         document.body.style.backgroundColor='#ac4722';
     }
-    else if (windvol>50){
+    else if (windvol>campvol && windvol>rainvol){
         document.body.style.backgroundColor='#99dee3';
     }
     else{
@@ -88,7 +88,7 @@ presets.forEach(btn=>{
             card.querySelector('.toggle-btn').textContent="Play";
         });
         const text=btn.textContent;
-        if (text.includes('Deep Forest')) {
+        if (text.includes('Forest')) {
             slidervalue('birds', 60);
             slidervalue('river', 40);
             slidervalue('wind', 30);
@@ -104,9 +104,11 @@ presets.forEach(btn=>{
     });
 });
 function slidervalue(soundname, v){
-    const card=document.querySelector('[data-sound="${soundname}"]');
+    const card=document.querySelector(
+        `[data-sound="${soundname}"]`
+    );
     if (card){
-        const slider=card.querySelector('.volme-slider');
+        const slider=card.querySelector('.volume-slider');
         slider.value=v;
         slider.dispatchEvent(new Event('input'));
     }
@@ -117,20 +119,21 @@ timers.forEach(btn=>{
         let left=minutes*60;
         if(activetimer)
             clearInterval(activetimer);
-        timerdisplay.textContent="Timer Active: ${minutes} min. remaining";
+    timerdisplay.textContent =
+    `Timer Active: ${minutes} min. remaining`;
         activetimer=setInterval(()=>{
             left--;
             let mins=Math.floor(left/60);
             let secs=left%60;
-            timerdisplay.textContent="Time Left: ${mins}m ${secs<10 ? '0':' '}${secs}s";
+            timerdisplay.textContent=`Time Left: ${mins}m ${secs < 10 ?'0': ' '} ${secs}s`;
             if(left<=0) {
                 clearInterval(activetimer);
                 timerdisplay.textContent="Timer ended.";
                 soundcards.forEach(card=>{
-                    card.querySelector('volume-slider').value=0;
+                    card.querySelector('.volume-slider').value=0;
                     card.querySelector('audio').pause();
                     card.querySelector('.toggle-btn').classList.remove('active');
-                    card.querySelector('.toggle-btn').textContent="Play;";
+                    card.querySelector('.toggle-btn').textContent="Play";
                 });
                 document.body.style.backgroundColor='#2c3e2e';
             }
