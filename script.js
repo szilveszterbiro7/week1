@@ -62,3 +62,78 @@ mastertoggle.addEventListener('click', () =>{
         mastertoggle.classList.remove('active');
     }
 });
+function updateDynamicBackground() {
+    let rainvol=document.getElementById('vol-rain').value;
+    let campfirevol=document.getElementById('vol-campfire').value
+    let windvol=document.getElementById('vol-wind').value;
+    if (rainvol>50){
+        document.body.style.backgroundColor='#2d3d52';
+    }
+    else if (campfirevol>50){
+        document.body.style.backgroundColor='#ac4722';
+    }
+    else if (windvol>50){
+        document.body.style.backgroundColor='#99dee3';
+    }
+    else{
+        document.body.style.backgroundColor='#2c3e2e';
+    }
+}
+presets.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        soundcards.forEach(card=>{
+            card.querySelector('.volume-slider').value=0;
+            card.querySelector('audio').pause();
+            card.querySelector('.toggle-btn').classList.remove('active');
+            card.querySelector('.toggle-btn').textContent="Play";
+        });
+        const text=btn.textContent;
+        if (text.includes('Deep Forest')) {
+            slidervalue('birds', 60);
+            slidervalue('river', 40);
+            slidervalue('wind', 30);
+        }
+        else if (text.includes('Cozy Campfire')) {
+            slidervalue('campfire', 80);
+            slidervalue('wind', 20);
+        }
+        else if (text.includes('Mountain Rain')) {
+            slidervalue('rain', 90);
+            slidervalue('wind', 50);
+        }
+    });
+});
+function slidervalue(soundname, v){
+    const card=document.querySelector('[data-sound="${soundname}"]');
+    if (card){
+        const slider=card.querySelector('.volme-slider');
+        slider.value=v;
+        slider.dispatchEvent(new Event('input'));
+    }
+}
+timers.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+        const minutes=parseInt(btn.dataset.time);
+        let left=minutes*60;
+        if(activetimer)
+            clearInterval(activetimer);
+        timerdisplay.textContent="Timer Active: ${minutes} min. remaining";
+        activetimer=setInterval(()=>{
+            left--;
+            let mins=Math.floor(left/60);
+            let secs=left%60;
+            timerdisplay.textContent="Time Left: ${mins}m ${secs<10 ? '0':' '}${secs}s";
+            if(left<=0) {
+                clearInterval(activetimer);
+                timerdisplay.textContent="Timer ended.";
+                soundcards.forEach(card=>{
+                    card.querySelector('volume-slider').value=0;
+                    card.querySelector('audio').pause();
+                    card.querySelector('.toggle-btn').classList.remove('active');
+                    card.querySelector('.toggle-btn').textContent="Play;";
+                });
+                document.body.style.backgroundColor='#2c3e2e';
+            }
+        }, 1000);
+    });
+});
